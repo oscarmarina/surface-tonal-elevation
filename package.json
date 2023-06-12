@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "wds --port 6174 --open"
+  },
+  "devDependencies": {
+    "@web/dev-server": "^0.2.2"
+  }
+}

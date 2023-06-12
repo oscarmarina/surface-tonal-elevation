@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surface - tonalElevation</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        color: #1f1b16;
+        font-family: sans-serif;
+        display: flex;
+        gap: 3rem;
+        margin: 3rem 4rem 0;
+      }
+      section + section {
+        margin-left_: auto;
+      }
+
+      .card {
+        border: 1px solid #f0e0cf;
+        border-radius: 0.1875rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        min-width: 12.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="card" data-elevation="0">
+        <p>Elevation 0</p>
+      </div>
+      <div class="card" data-elevation="1">
+        <p>Elevation 1</p>
+      </div>
+      <div class="card" data-elevation="2">
+        <p>Elevation 2</p>
+      </div>
+      <div class="card" data-elevation="3">
+        <p>Elevation 3</p>
+      </div>
+      <div class="card" data-elevation="4">
+        <p>Elevation 4</p>
+      </div>
+      <div class="card" data-elevation="5">
+        <p>Elevation 5</p>
+      </div>
+    </section>
+    <section>
+      <div class="card" data-elevation="5">
+        <p>Elevation 5</p>
+        <div class="card" data-elevation="4">
+          <p>Elevation 4</p>
+          <div class="card" data-elevation="3">
+            <p>Elevation 3</p>
+            <div class="card" data-elevation="2">
+              <p>Elevation 2</p>
+              <div class="card" data-elevation="1">
+                <p>Elevation 1</p>
+                <div class="card" data-elevation="0">
+                  <p>Elevation 0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script type="module">
+      import { surfaceColorAtElevation } from './main.js';
+
+      // https://developer.android.com/codelabs/jetpack-compose-theming#3
+      // https://github.com/androidx/androidx/blob/androidx-main/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Surface.kt#L429
+      // https://github.com/androidx/androidx/blob/androidx-main/compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/ColorScheme.kt#L867
+      // https://github.com/androidx/androidx/blob/androidx-main/compose/ui/ui-graphics/src/commonMain/kotlin/androidx/compose/ui/graphics/Color.kt#L560
+
+      const colorSchemeCodelab = {
+        surface: '#fffbff',
+        surfaceTint: '#825500',
+      };
+
+      const colorScheme = {
+        surface: '#fef7ff',
+        surfaceTint: '#6750a4',
+      };
+
+      const cards = document.querySelectorAll('.card');
+      Array.from(cards).forEach((card) => {
+        card.style.backgroundColor = surfaceColorAtElevation(
+          card.dataset.elevation,
+          colorSchemeCodelab
+        );
+      });
+    </script>
+  </body>
+</html>
